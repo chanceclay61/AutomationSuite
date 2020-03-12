@@ -1,7 +1,6 @@
 from selenium import webdriver
 import time
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
@@ -32,7 +31,7 @@ def main_navigation():
     second_level_menu = driver.find_element_by_xpath('//*[@id="g-navigation"]/div/nav/ul/li[2]/div/ul[1]/li[4]/a')
     second_level_menu.click()
 
-    #  click Check Availability button
+    # click Check Availability button
     driver.find_element_by_id('webToolsAddressCheck').click()
 
     # delivery location drop down selector
