@@ -95,15 +95,12 @@ def main_navigation():
     driver.find_element_by_id('atg_store_checkout').click()
 
 
-# def main():
-def new_page:
-    driver.get("https://www.google.com/?gws_rd=ssl")
-login()
-loginfailure()
-new_page()
+def main():
+    login()
+    login_failure()
     # login_success()
     # main_navigation()
     # driver.quit()
 
 
-# main()
+main()
