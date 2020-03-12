@@ -8,6 +8,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 driver = webdriver.Chrome("drivers\chromedriver.exe")
+# correct_username = "chanceclay61"
+# correct_password = "Chance0176!"
 
 
 def login():
@@ -16,10 +18,29 @@ def login():
     driver.find_element_by_id("login-register-header").click()
     time.sleep(15)  # will remove once automation is no longer blocked on login
 
-    # driver.find_element_by_id("username").send_keys("chanceclay61")
-    # driver.find_element_by_id("password").send_keys("Chance0176!")
+    # driver.find_element_by_id("username").send_keys(username)
+    # driver.find_element_by_id("password").send_keys(password)
     # driver.find_element_by_id("btn-submit").click()
     # driver.find_element_by_id("mail-ship-width").click()
+
+
+def login_success():
+
+    landing_page = driver.current_url
+    try:
+        assert landing_page == "https://store.usps.com/store/home"
+    except AssertionError:
+        print("Unable to login")
+
+
+def login_failure():
+
+    login_failure_message = driver.find_element_by_xpath('//*[@id="response-msg"]/div')
+
+    try:
+        assert login_failure_message.text == "We do not recognize your username and/or password. Please try again."
+    except AssertionError:
+        print("Login failure message did not appear")
 
 
 def main_navigation():
@@ -71,7 +92,9 @@ def main_navigation():
 def main():
 
     login()
-    main_navigation()
+    login_failure()
+    # login_success()
+    # main_navigation()
     # driver.quit()
 
 
