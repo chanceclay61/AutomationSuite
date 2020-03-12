@@ -15,7 +15,7 @@ def login():
 
     driver.get("https://store.usps.com/store/home")
     driver.find_element_by_id("login-register-header").click()
-    time.sleep(15)
+    time.sleep(15)  # will remove once automation is no longer blocked on login
 
     # driver.find_element_by_id("username").send_keys("chanceclay61")
     # driver.find_element_by_id("password").send_keys("Chance0176!")
@@ -37,7 +37,7 @@ def main_navigation():
 
     # delivery location drop down selector
     select_location = Select(driver.find_element_by_id('packageLocation'))
-    time.sleep(3)
+    time.sleep(3)  # need to refactor to wait for element
     select_location.select_by_value('Front_Door')
 
     # delivery time radio button selector
@@ -45,7 +45,7 @@ def main_navigation():
 
     # select time drop down selector
     select_time = Select(driver.find_element_by_id('puodSelectTime'))
-    time.sleep(3)
+    time.sleep(3)  # need to refactor to wait for element
     select_time.select_by_value('10:00:00')
 
     # select calendar date
@@ -65,7 +65,7 @@ def main_navigation():
     driver.find_element_by_id('schedulePickupButton').click()
 
     # Click Checkout button
-    time.sleep(3)
+    time.sleep(3)  # need to refactor to wait for element
     driver.find_element_by_id('atg_store_checkout').click()
 
 
