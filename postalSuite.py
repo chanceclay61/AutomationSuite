@@ -27,6 +27,7 @@ def login():
 def login_success():
 
     landing_page = driver.current_url
+
     try:
         assert landing_page == "https://store.usps.com/store/home"
     except AssertionError:
