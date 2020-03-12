@@ -17,7 +17,6 @@ def login():
     driver.get("https://store.usps.com/store/home")
     driver.find_element_by_id("login-register-header").click()
     time.sleep(15)  # will remove once automation is no longer blocked on login
-
     # driver.find_element_by_id("username").send_keys(username)
     # driver.find_element_by_id("password").send_keys(password)
     # driver.find_element_by_id("btn-submit").click()
@@ -35,7 +34,7 @@ def login_success():
 
 
 def login_failure():
-
+    print("hey i made it here")
     login_failure_message = driver.find_element_by_xpath('//*[@id="response-msg"]/div')
 
     try:
@@ -90,13 +89,15 @@ def main_navigation():
     driver.find_element_by_id('atg_store_checkout').click()
 
 
-def main():
-
-    login()
-    login_failure()
+# def main():
+def new_page:
+    driver.get("https://www.google.com/?gws_rd=ssl")
+login()
+loginfailure()
+new_page()
     # login_success()
     # main_navigation()
     # driver.quit()
 
 
-main()
+# main()
