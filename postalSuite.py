@@ -1,6 +1,7 @@
 from selenium import webdriver
 import time
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
@@ -34,13 +35,18 @@ def login_success():
 
 
 def login_failure():
-    print("hey i made it here")
-    login_failure_message = driver.find_element_by_xpath('//*[@id="response-msg"]/div')
 
     try:
-        assert login_failure_message.text == "We do not recognize your username and/or password. Please try again."
+        driver.find_element_by_xpath('//*[@id="response-msg"]/div')
+    except NoSuchElementException:
+        print("No login failure message")
+        return
+
+    try:
+        assert driver.find_element_by_xpath('//*[@id="response-msg"]/div').text == "We do not recognize your username " \
+                                                                                   "and/or password. Please try again."
     except AssertionError:
-        print("Login failure message did not appear")
+        print("Login failure message does not match expected output")
 
 
 def main_navigation():
