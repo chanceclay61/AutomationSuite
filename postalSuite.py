@@ -1,30 +1,29 @@
 from selenium import webdriver
 import time
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import NoSuchElementException
 
 
-driver = webdriver.Chrome("AutomationSuite/drivers/chromedriver.exe")
-# correct_username = "chanceclay61"
-# correct_password = "Chance0176!"
+browser = webdriver.Chrome("drivers\chromedriver.exe")
 
 
-def login():
+def login(driver):
 
     driver.get("https://store.usps.com/store/home")
     driver.find_element_by_id("login-register-header").click()
     time.sleep(15)  # will remove once automation is no longer blocked on login
+
     # driver.find_element_by_id("username").send_keys(username)
     # driver.find_element_by_id("password").send_keys(password)
     # driver.find_element_by_id("btn-submit").click()
     # driver.find_element_by_id("mail-ship-width").click()
 
 
-def login_success():
+def login_success(driver):
 
     landing_page = driver.current_url
 
@@ -34,22 +33,21 @@ def login_success():
         print("Unable to login")
 
 
-def login_failure():
+def login_failure(driver):
 
     try:
         driver.find_element_by_xpath('//*[@id="response-msg"]/div')
     except NoSuchElementException:
-        print("No login failure message")
-        return
+        print("Login failure message is not present")
 
     try:
         assert driver.find_element_by_xpath('//*[@id="response-msg"]/div').text == "We do not recognize your username " \
                                                                                    "and/or password. Please try again."
     except AssertionError:
-        print("Login failure message does not match expected output")
+        print("Login failure message did not appear")
 
 
-def main_navigation():
+def main_navigation(driver):
 
     # navigate to schedule pickup
     action = ActionChains(driver)
@@ -95,12 +93,9 @@ def main_navigation():
     driver.find_element_by_id('atg_store_checkout').click()
 
 
-def main():
-
-    login()
-    # login_success()
-    main_navigation()
-    # driver.quit()
+def credit_card_success():
+    pass
 
 
-main()
+def credit_card_failure():
+    pass
